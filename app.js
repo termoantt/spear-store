@@ -1,13 +1,13 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
 const favicon = require('serve-favicon');
-var logger = require('morgan');
+const logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var warehouseRouter = require('./routes/warehouse');
+const indexRouter = require('./routes/index');
+const warehouseRouter = require('./routes/warehouse');
 
-var app = express();
+const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
