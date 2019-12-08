@@ -2,6 +2,8 @@ const { Request } = require('tedious')
 const { connectionEurope, connectionUS, connectionAsia } = require('../../db');
 
 const getWarehouse = function (req, res, next) {
+    var region = req.params.region;
+
     let jsonArray = [];
 
     const request = new Request(
@@ -24,7 +26,18 @@ const getWarehouse = function (req, res, next) {
         jsonArray.push(rowObject);
     });
 
-    connectionEurope.execSql(request);
+    switch (region) {
+        case 'Asia':
+            connectionAsia.execSql(request);
+            break;
+        case 'America':
+            connectionUS.execSql(request);
+            break;
+        case 'Europe':
+        default:
+            connectionEurope.execSql(request);
+            break;
+    }
 };
 
 module.exports = {

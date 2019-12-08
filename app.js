@@ -20,6 +20,6 @@ app.use('/', indexRouter);
 
 const apiRoute = '/api/v1';
 
-app.use(`${apiRoute}/warehouse`, warehouseRouter);
+app.use(`${apiRoute}/warehouse:region`, warehouseRouter);
 
 module.exports = app;

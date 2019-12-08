@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang=en>
 
 <head>
@@ -6,21 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="./stylesheets/style.css">
 
     <title>Spear Store</title>
 </head>
 
 <body>
     <h1 class="title">Spear Store</h1>
+
+    <!-- Hidden data fields for storing ip and region -->
+    <label id="ip" style="display:none"></label>
+    <label id="region" style="display:none">Europe</label>
+
+    <br />
+
     <button class="btn btn-primary" type="button" id="searchButton">Search for Guitars</button>
+    <br />
+    <br />
     <div class="data"></div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <script src="/javascripts/config.js"></script>
-    <script src="/javascripts/warehouseController.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="./javascripts/config.js"></script>
+    <script src="./javascripts/warehouseController.js"></script>
 </body>
 
 </html>
