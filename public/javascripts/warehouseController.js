@@ -1,11 +1,11 @@
 (function ($, window, document) {
     $(document).ready(function () {
         $('#searchButton').on('click', function () {
-            
+
             // Get client IP data
             $.getJSON("https://api.ipify.org/?format=json", function (e) {
                 $('#ip').text(e.ip);
-                
+
                 // Query: http://api.ipstack.com/95.175.104.124?access_key=2ddaade31b11528050e9d939946a9e23 --- ip should be changed
                 var query = 'http://api.ipstack.com/' + $('#ip').text() + '?access_key=2ddaade31b11528050e9d939946a9e23';
                 $.ajax({
@@ -26,9 +26,9 @@
                 // For testing: Changing region label value will alter db of the query
                 // $('#region').text('America');
 
-                $('.title').html('Guitars available on ' + $('#region').text() + ':');                
+                $('.title').html('Guitars available on ' + $('#region').text() + ':');
 
-                $.getJSON(`${window.apiRoute}/warehouse?region=` + $('#region').text())                
+                $.getJSON(`${window.apiRoute}/warehouse/` + $('#region').text())
                     .done(function (data) {
                         console.log(data);
 

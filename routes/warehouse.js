@@ -7,4 +7,8 @@ router.get('/',
     warehouseController.getWarehouse
 );
 
+router.get('/:region',
+    warehouseController.getWarehouse
+);
+
 module.exports = router;

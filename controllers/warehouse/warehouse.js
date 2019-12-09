@@ -2,12 +2,11 @@ const { Request } = require('tedious')
 const { connectionEurope, connectionUS, connectionAsia } = require('../../db');
 
 const getWarehouse = function (req, res, next) {
-    var region = req.params.region;
-
     let jsonArray = [];
+    const region = req.params.region;
 
     const request = new Request(
-        `SELECT * FROM [Product]`,
+        `SELECT * FROM [Warehouse]`,
         (err, rowCount) => {
             if (err) {
                 console.error(err.message);
