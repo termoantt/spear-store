@@ -6,7 +6,9 @@ const getWarehouse = function (req, res, next) {
     const region = req.params.region;
 
     const request = new Request(
-        `SELECT * FROM [Warehouse]`,
+        `SELECT Product.brand, Product.model, Product.scale, Product.weight, Product.price, Warehouse.stock_level 
+        FROM Product
+        INNER JOIN Warehouse ON Product.product_id=Warehouse.product_id;`,
         (err, rowCount) => {
             if (err) {
                 console.error(err.message);

@@ -69,3 +69,21 @@ VALUES (23, 29, 'Europe', 5, 23);
 
 INSERT INTO Warehouse (warehouse_id, product_id, region, stock_level, shelf_number)
 VALUES (24, 30, 'Europe', 2, 24);
+
+INSERT INTO Warehouse (warehouse_id, product_id, region, stock_level, shelf_number)
+VALUES (25, 3, 'Europe', 6, 25);
+
+INSERT INTO Warehouse (warehouse_id, product_id, region, stock_level, shelf_number)
+VALUES (26, 5, 'Europe', 6, 26);
+
+INSERT INTO Warehouse (warehouse_id, product_id, region, stock_level, shelf_number)
+VALUES (27, 6, 'Europe', 2, 27);
+
+INSERT INTO Warehouse (warehouse_id, product_id, region, stock_level, shelf_number)
+VALUES (28, 7, 'Europe', 12, 28);
+
+INSERT INTO Warehouse (warehouse_id, product_id, region, stock_level, shelf_number)
+VALUES (29, 8, 'Europe', 6, 29);
+
+INSERT INTO Warehouse (warehouse_id, product_id, region, stock_level, shelf_number)
+VALUES (30, 9, 'Europe', 5, 30);

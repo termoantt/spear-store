@@ -38,7 +38,7 @@
                                 $.each(value, function (id, content) {
 
                                     html += '<p class="divProduct">';
-                                    html += '<label>Brand: ' + content.brand + ', Model: ' + content.model + ', Scale: ' + content.scale + ', Weight: ' + content.weight + ', Price: ' + content.price + '</label>';
+                                    html += '<label>Brand: ' + content.brand + ', Model: ' + content.model + ', Scale: ' + content.scale + ', Weight: ' + content.weight + ', Price: ' + content.price + ', Stock level: ' + content.stock_level + '</label>';
                                     html += '</p>';
 
                                 });
