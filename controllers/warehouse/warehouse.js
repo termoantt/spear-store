@@ -29,9 +29,12 @@ const getWarehouse = function (req, res, next) {
 
     switch (region) {
         case 'Asia':
+        case 'Australia':
             connectionAsia.execSql(request);
             break;
         case 'America':
+        case 'North America':
+        case 'South America':
             connectionUS.execSql(request);
             break;
         case 'Europe':

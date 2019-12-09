@@ -1,5 +1,7 @@
 (function ($, window, document) {
     $(document).ready(function () {
+        $('#changeRegion').hide();
+
         $('#searchButton').on('click', function () {
 
             // Get client IP data
@@ -21,33 +23,38 @@
                         console.log('Error ${error}')
                     }
                 });
+               
+                searchData();
+                
+            });
+        });
 
-                // TBD: support region change on website
-                // For testing: Changing region label value will alter db of the query
-                // $('#region').text('America');
+        $('.btnChangeLocation').on('click', function () {
+            $('#region').text($(this).text());
+            searchData();
+        });
 
-                $('.title').html('Guitars available on ' + $('#region').text() + ':');
+        function searchData() {
+            $('#lblAvailability').html('Guitars available on ' + $('#region').text() + ':');
 
-                $.getJSON(`${window.apiRoute}/warehouse/` + $('#region').text())
-                    .done(function (data) {
-                        console.log(data);
+            $.getJSON(`${window.apiRoute}/warehouse/` + $('#region').text()).done(function (data) {
+                console.log(data);
 
-                        var html = '';
-                        $.each(data, function (key, value) {
-                            if (key == 'data') {
-                                $.each(value, function (id, content) {
+                var html = '';
+                $.each(data, function (key, value) {
+                    if (key == 'data') {
+                        $.each(value, function (id, content) {
 
                                     html += '<p class="divProduct">';
                                     html += '<label>Brand: ' + content.brand + ', Model: ' + content.model + ', Scale: ' + content.scale + ', Weight: ' + content.weight + ', Price: ' + content.price + ', Stock level: ' + content.stock_level + '</label>';
                                     html += '</p>';
-
-                                });
-                            }
                         });
+                    }
+                });
 
-                        $('.data').html(html);
-                    });
+                $('.data').html(html);
             });
-        });
+            $('#changeRegion').show();
+        }
     });
 })(jQuery, window, document)

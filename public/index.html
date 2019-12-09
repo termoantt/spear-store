@@ -14,9 +14,11 @@
 <body>
     <h1 class="title">Spear Store</h1>
 
+    <h3 id="lblAvailability"></h3>
+
     <!-- Hidden data fields for storing ip and region -->
     <label id="ip" style="display:none"></label>
-    <label id="region" style="display:none">Europe</label>
+    <label id="region" style="display:none"></label>
 
     <br />
 
@@ -24,6 +26,15 @@
     <br />
     <br />
     <div class="data"></div>
+
+    <p id="changeRegion">
+        <label>Not what you are looking for? Try to search from other locations:</label>
+        <br />
+        <button class="btnChangeLocation" type="button" id="btnAmerica">America</button>
+        <button class="btnChangeLocation" type="button" id="btnAsia">Asia</button>
+        <button class="btnChangeLocation" type="button" id="btnEurope">Europe</button>
+
+    </p>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
