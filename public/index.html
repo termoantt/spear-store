@@ -13,27 +13,21 @@
 
 <body>
     <h1 class="title">Spear Store</h1>
-
-    <h3 id="lblAvailability"></h3>
-
-    <!-- Hidden data fields for storing ip and region -->
-    <label id="ip" style="display:none"></label>
-    <label id="region" style="display:none"></label>
+    <h3 class="subtitle"></h3>
 
     <br />
-
-    <button class="btn btn-primary" type="button" id="searchButton">Search for Guitars</button>
+    <button class="btn btn-primary" type="button" id="search-button">Search for Guitars</button>
     <br />
     <br />
-    <div class="data"></div>
 
-    <p id="changeRegion">
+    <div id="data"></div>
+
+    <p class="change-region-container">
         <label>Not what you are looking for? Try to search from other locations:</label>
         <br />
-        <button class="btnChangeLocation" type="button" id="btnAmerica">America</button>
-        <button class="btnChangeLocation" type="button" id="btnAsia">Asia</button>
-        <button class="btnChangeLocation" type="button" id="btnEurope">Europe</button>
-
+        <button class="change-region-button" type="button" data-region="America">America</button>
+        <button class="change-region-button" type="button" data-region="Asia">Asia</button>
+        <button class="change-region-button" type="button" data-region="Europe">Europe</button>
     </p>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

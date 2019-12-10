@@ -11,4 +11,8 @@ router.get('/:region',
     warehouseController.getWarehouse
 );
 
+router.post('/:region/buy',
+    warehouseController.buyGuitar
+);
+
 module.exports = router;

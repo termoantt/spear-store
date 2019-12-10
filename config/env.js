@@ -14,7 +14,7 @@ const env = {
             server: "diss-server-europe.database.windows.net",
             options: {
                 database: "diss-db-europe",
-                encrypt: true
+                rowCollectionOnRequestCompletion: true
             }
         },
         US: {
@@ -28,7 +28,7 @@ const env = {
             server: "diss-server-us.database.windows.net",
             options: {
                 database: "diss-db-us",
-                encrypt: true
+                rowCollectionOnRequestCompletion: true
             }
         },
         ASIA: {
@@ -42,7 +42,7 @@ const env = {
             server: "diss-server-asia.database.windows.net",
             options: {
                 database: "diss-db-asia",
-                encrypt: true
+                rowCollectionOnRequestCompletion: true
             }
         }
     }

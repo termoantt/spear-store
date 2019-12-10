@@ -1,60 +1,64 @@
 (function ($, window, document) {
     $(document).ready(function () {
-        $('#changeRegion').hide();
+        let region = 'Europe';
+        let regionFetched = false;
 
-        $('#searchButton').on('click', function () {
+        $('.change-region-container').hide();
 
-            // Get client IP data
-            $.getJSON("https://api.ipify.org/?format=json", function (e) {
-                $('#ip').text(e.ip);
-
-                // Query: http://api.ipstack.com/95.175.104.124?access_key=2ddaade31b11528050e9d939946a9e23 --- ip should be changed
-                var query = 'http://api.ipstack.com/' + $('#ip').text() + '?access_key=2ddaade31b11528050e9d939946a9e23';
-                $.ajax({
-                    url: query,
-                    async: false,
-                    type: 'GET',
-                    success: function (result) {
-                        // Prints result to console and continent to reqion element
-                        //console.log(result);
-                        $('#region').text(result.continent_name);
-                    },
-                    error: function (error) {
-                        console.log('Error ${error}')
-                    }
-                });
-               
-                searchData();
-                
+        $.getJSON("https://api.ipify.org/?format=json")
+            .done(function (data) {
+                $.getJSON(`http://api.ipstack.com/${data.ip}?access_key=2ddaade31b11528050e9d939946a9e23`)
+                    .done(function (data) {
+                        region = data.continent_name;
+                        regionFetched = true;
+                        console.log('ready');
+                    });
             });
-        });
 
-        $('.btnChangeLocation').on('click', function () {
-            $('#region').text($(this).text());
-            searchData();
-        });
+        function getGuitars(searchRegion) {
+            $.getJSON(`${window.apiRoute}/warehouse/${searchRegion}`)
+                .done(function (data) {
+                    var html = '';
 
-        function searchData() {
-            $('#lblAvailability').html('Guitars available on ' + $('#region').text() + ':');
+                    $.each(data, function (key, value) {
+                        if (key == 'data') {
+                            $.each(value, function (id, content) {
+                                html += '<p class="divProduct"><button ' + (!!content.stock_level ? '' : 'disabled') + ' id="buy-button" data-id="' + content.product_id + '" data-quantity="' + content.stock_level + '">Buy</button>';
+                                html += '<label>Brand: ' + content.brand + ', Model: ' + content.model + ', Scale: ' + content.scale + ', Weight: ' + content.weight + ', Price: ' + content.price + ', Stock level: ' + content.stock_level + '</label>';
+                                html += '</p>';
+                            });
+                        }
+                    });
 
-            $.getJSON(`${window.apiRoute}/warehouse/` + $('#region').text()).done(function (data) {
-                console.log(data);
-
-                var html = '';
-                $.each(data, function (key, value) {
-                    if (key == 'data') {
-                        $.each(value, function (id, content) {
-
-                                    html += '<p class="divProduct">';
-                                    html += '<label>Brand: ' + content.brand + ', Model: ' + content.model + ', Scale: ' + content.scale + ', Weight: ' + content.weight + ', Price: ' + content.price + ', Stock level: ' + content.stock_level + '</label>';
-                                    html += '</p>';
-                        });
-                    }
+                    $('#data').html(html);
                 });
 
-                $('.data').html(html);
-            });
-            $('#changeRegion').show();
+            $('.subtitle').html(`Guitars available on ${region}:`);
+            $('.change-region-container').show();
         }
+
+        function buyGuitar(buyRegion, id, quantity) {
+            $.post(`${window.apiRoute}/warehouse/${buyRegion}/buy`, {
+                product_id: id,
+                quantity: parseInt(quantity - 1),
+                user_id: 1
+            })
+                .done(function (data) {
+                    console.log(data);
+                });
+        }
+
+        $('#search-button').on('click', function () {
+            getGuitars(region);
+        });
+
+        $('.change-region-button').on('click', function () {
+            region = $(this).data('region');
+            getGuitars(region);
+        });
+
+        $('#data').on('click', '#buy-button', function () {
+            buyGuitar(region, $(this).data('id'), $(this).data('quantity'));
+        });
     });
 })(jQuery, window, document)
